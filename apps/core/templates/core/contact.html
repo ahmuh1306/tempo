@@ -7,16 +7,52 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">Contact us</h1>
-                <h2 class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum sollicitudin sapien. Maecenas varius mi sed tortor condimentum, sed vulputate felis aliquam. Morbi vitae placerat quam. Mauris fermentum non sapien ut elementum. Suspendisse eu dolor molestie, porta ex in, aliquet odio. Nunc viverra varius nunc sit amet elementum. Nulla scelerisque enim eget tincidunt convallis. Suspendisse potenti. Curabitur nec nisi a nisl lobortis pulvinar. Maecenas nec ullamcorper eros, nec varius augue. Etiam tortor dolor, scelerisque eget felis sollicitudin, pellentesque feugiat velit. Nunc varius diam eget consectetur facilisis. Mauris vel eros id elit faucibus malesuada. Fusce non nisl fermentum, porta lectus in, auctor ex.
-
-                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porta justo turpis, a molestie nulla convallis sed. Morbi faucibus egestas metus nec placerat. Pellentesque rutrum ultrices sem nec pulvinar. Nam cursus pharetra aliquet. Donec et malesuada diam, id gravida justo. Nunc consequat lorem sed quam dictum sagittis. Sed interdum erat nec magna sodales malesuada.
-                    
-                    Nulla sed nunc at diam faucibus luctus. Phasellus at metus ac sem fringilla mollis sit amet ut ante. Suspendisse tempus, ipsum ac malesuada varius, magna lacus consequat tellus, pulvinar tempus diam augue ut enim. Donec vitae commodo sapien. Sed vitae ultricies purus. Suspendisse rutrum elit sit amet nisi sodales ornare. Curabitur eu quam hendrerit, venenatis sapien in, convallis ligula. Quisque dapibus ac tellus vitae placerat. Morbi hendrerit tellus et nulla mollis tincidunt. Ut rhoncus odio leo, sit amet sodales urna rhoncus vel. Donec aliquet, arcu eu elementum lobortis, sapien turpis iaculis dui, ac tincidunt nisi est quis est. Pellentesque commodo sem mauris, id mollis elit sollicitudin sit amet. Fusce a risus euismod, malesuada nisi a, sodales odio. Suspendisse potenti.
-                    
-                    Aenean dictum vulputate est, et pellentesque nisi cursus in. Aliquam volutpat fermentum metus, eget bibendum urna molestie vel. Phasellus sagittis massa in eros pharetra molestie. Integer vitae libero in est aliquet aliquet in sit amet felis. Nunc pellentesque arcu nec erat elementum facilisis. Integer vel lectus eget magna lacinia sodales. Morbi pellentesque ligula sit amet nisl ultricies, et sagittis tortor efficitur. Mauris ut mattis massa. In fermentum arcu eget ligula ultricies, sit amet laoreet erat blandit. In at cursus neque. Vestibulum nisl sem, pulvinar nec metus ut, scelerisque blandit dolor.
-                    
-                    Aenean in sapien tempus, suscipit leo sed, maximus mi. Sed at erat id purus laoreet efficitur. Nullam scelerisque felis eu volutpat interdum. Integer justo metus, convallis nec euismod auctor, tempor sed mi. Nam sit amet urna lacus. Praesent elementum elit tortor, nec porttitor lectus tempor id. Mauris tristique, sem lacinia blandit bibendum, mi risus mattis sapien, ut placerat tellus nibh vel ante. Pellentesque lobortis mollis dictum. In sollicitudin lacinia urna. Duis id nulla consequat lectus volutpat eleifend. Morbi posuere accumsan velit, at placerat nisi mattis a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas lorem elit, aliquet vel tellus non, aliquam euismod nulla. Morbi et tellus non est elementum fringilla. Cras rutrum tempus pellentesque. Sed id iaculis justo.</h2>
+                <h2 class="subtitle">Got any questions? Fill out the form below and we'll get in touch.</h2>
             </div>
         </div>
     </section>
+
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <form method="POST" action="." class="mt-6">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="notification is-danger">
+                        {{ form.non_field_errors }}
+
+                        {% for field in form %}
+                            {% if field.errors %}{{ field.label }}: {{ field.errors }}{% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                
+                <div class="field">
+                    <label>E-mail</label>
+                    <div class="control">
+                        <input type="email" name="from_email" id="id_from_email" class="input" required>
+                    </div>
+                </div>
+                <!-- ### -->
+                <div class="field">
+                    <label>Subject</label>
+                    <div class="control">
+                        <input type="text" name="subject" id="id_subject" class="input" required>
+                    </div>
+                </div>
+                <!-- ### -->
+                <div class="field">
+                    <label>Message</label>
+                    <div class="control">
+                        <input type="text" name="message" id="id_message" class="input" required>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-success">Send message</button>
+                    </div>
+                </div>
+            </form>
 {% endblock content %}

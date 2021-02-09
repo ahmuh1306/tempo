@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-from apps.core.views import frontpage, privacy, terms, plans, signup, contact
+from apps.core.views import frontpage, privacy, terms, plans, signup, contact, contact_success
 
 urlpatterns = [
     # Core
@@ -28,6 +28,7 @@ urlpatterns = [
     path('terms/', terms, name='terms'),
     path('plans/', plans, name='plans'),
     path('contact/', contact, name='contact'),
+    path('contact-success/', contact_success, name='contact_success'),
 
     # Userprofile
     path('signup/', signup, name='signup'),
